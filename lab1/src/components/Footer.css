@@ -1,0 +1,15 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  background-color: #262626;
+  color: white;
+  font-size: 0.8rem;
+  padding: 1rem;
+}
+.footer-details {
+  display: flex;
+  justify-content: center;
+  gap: 6vw;
+}
