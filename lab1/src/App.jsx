@@ -1,11 +1,10 @@
 import "./App.css";
+import Header from "./components/header/Header";
 
-function App() {
+export default function App() {
   return (
     <>
-      <h1>Sasa</h1>
+      <Header />
     </>
   );
 }
-
-export default App;
