@@ -1,144 +1,25 @@
+/* eslint-disable react/prop-types */
 import "./MainContent.css";
 import ProductCard from "./ProductCard";
+import data from "../../assets/data.json";
 
-export default function MainContent() {
-  return (
-    <main className="main-continer">
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-      <ProductCard
-        product={{
-          id: 1,
-          title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-          price: 109.95,
-          description:
-            "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-          category: "men's clothing",
-          image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
-          rating: {
-            rate: 3.9,
-            count: 120,
-          },
-        }}
-      />
-    </main>
-  );
+export default function MainContent({ searchInputValue }) {
+  function filteredProducts() {
+    if (searchInputValue === "") {
+      return data;
+    } else {
+      return data.filter((product) =>
+        product.title.toLowerCase().includes(searchInputValue.toLowerCase())
+      );
+    }
+  }
+
+  const mapeo = filteredProducts().map((product) => (
+    <ProductCard
+      key={product.id}
+      product={product}
+    />
+  ));
+
+  return <main className="main-continer">{mapeo}</main>;
 }
