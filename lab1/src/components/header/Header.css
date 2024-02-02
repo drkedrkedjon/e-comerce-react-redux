@@ -18,9 +18,19 @@
   padding: 0.3rem 0.8rem;
   color: black;
   font-size: 0.8rem;
-  border-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
   width: 100%;
 }
 .search-input::placeholder {
   color: #a0a0a0;
+}
+.header-submit-btn {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: white;
+  color: black;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  cursor: pointer;
 }

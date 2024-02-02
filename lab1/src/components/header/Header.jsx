@@ -2,6 +2,7 @@
 import { useState } from "react";
 import HeaderMenu from "./HeaderMenu";
 import HeaderAccountMenu from "./HeaderAccountMenu";
+import { Search } from "react-feather";
 import "./Header.css";
 
 export default function Header({ setSearchInputValue }) {
@@ -24,7 +25,13 @@ export default function Header({ setSearchInputValue }) {
           type="text"
           placeholder="Buscar productos"
         />
-        <button type="submit"></button>
+        <button
+          className="header-submit-btn"
+          type="submit"
+        >
+          {" "}
+          <Search size={18} />{" "}
+        </button>
       </form>
       <HeaderAccountMenu />
     </header>
