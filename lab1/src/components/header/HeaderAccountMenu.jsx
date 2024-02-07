@@ -22,8 +22,17 @@ export default function HeaderAccountMenu({ setRutas }) {
       <li onClick={handleTheme}>
         {user.isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
       </li>
-      <li onClick={() => setRutas("shopping-cart")}>
+      <li
+        className="notificacion-bubble-container"
+        onClick={() => setRutas("shopping-cart")}
+      >
         <ShoppingCart size={20} />
+
+        {user.shoppingCartItems.length !== 0 && (
+          <span className="notification-bubble">
+            {user.shoppingCartItems.length}
+          </span>
+        )}
       </li>
     </ul>
   );

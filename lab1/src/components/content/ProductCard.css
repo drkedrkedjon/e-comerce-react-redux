@@ -31,3 +31,12 @@
   font-size: 0.9rem;
   color: blue;
 }
+.card-btn {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: rgb(64, 129, 254);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
