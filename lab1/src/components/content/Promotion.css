@@ -2,6 +2,11 @@
   width: 80%;
   margin: 1rem auto;
   background-color: rgb(22, 31, 41);
+  background: linear-gradient(
+    90deg,
+    rgba(3, 0, 64, 1) 0%,
+    rgba(0, 0, 115, 1) 100%
+  );
   color: white;
   border-radius: 8px;
   text-align: center;

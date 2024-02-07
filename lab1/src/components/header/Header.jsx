@@ -6,7 +6,7 @@ import { Search } from "react-feather";
 import "./Header.css";
 import { UserContext } from "../../contextos/UserContext";
 
-export default function Header({ setSearchInputValue }) {
+export default function Header({ setSearchInputValue, setRutas }) {
   const [formValue, setFormValue] = useState("");
   const { user } = useContext(UserContext);
 
@@ -19,7 +19,7 @@ export default function Header({ setSearchInputValue }) {
     <header
       className={`header-container ${user.isDarkMode ? "dark-mode" : "light-mode"}`}
     >
-      <h1>MiTienda</h1>
+      <h1 onClick={() => setRutas("content")}>MiTienda</h1>
       <HeaderMenu />
       <form onSubmit={handleSubmit}>
         <input
@@ -37,7 +37,7 @@ export default function Header({ setSearchInputValue }) {
           <Search size={18} />{" "}
         </button>
       </form>
-      <HeaderAccountMenu />
+      <HeaderAccountMenu setRutas={setRutas} />
     </header>
   );
 }

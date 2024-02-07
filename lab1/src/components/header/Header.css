@@ -16,6 +16,7 @@
 }
 .header-container > h1 {
   font-size: 1.3rem;
+  cursor: pointer;
 }
 .header-container > form {
   flex-grow: 1;

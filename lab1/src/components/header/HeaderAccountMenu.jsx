@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { ShoppingCart, Heart, User, Moon, Sun } from "react-feather";
 import "./HeaderAccountMenu.css";
 import { useContext } from "react";
 import { UserContext } from "../../contextos/UserContext";
 
-export default function HeaderAccountMenu() {
+export default function HeaderAccountMenu({ setRutas }) {
   const { user, setUser } = useContext(UserContext);
 
   function handleTheme() {
@@ -21,7 +22,7 @@ export default function HeaderAccountMenu() {
       <li onClick={handleTheme}>
         {user.isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
       </li>
-      <li>
+      <li onClick={() => setRutas("shopping-cart")}>
         <ShoppingCart size={20} />
       </li>
     </ul>
