@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import HeaderMenu from "./HeaderMenu";
 import HeaderAccountMenu from "./HeaderAccountMenu";
 import { Search } from "react-feather";
 import "./Header.css";
+import { UserContext } from "../../contextos/UserContext";
 
 export default function Header({ setSearchInputValue }) {
   const [formValue, setFormValue] = useState("");
+  const { user } = useContext(UserContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -14,7 +16,9 @@ export default function Header({ setSearchInputValue }) {
   }
 
   return (
-    <header className="header-container">
+    <header
+      className={`header-container ${user.isDarkMode ? "dark-mode" : "light-mode"}`}
+    >
       <h1>MiTienda</h1>
       <HeaderMenu />
       <form onSubmit={handleSubmit}>

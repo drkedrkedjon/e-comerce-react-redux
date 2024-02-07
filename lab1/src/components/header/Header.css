@@ -1,10 +1,18 @@
 .header-container {
   display: flex;
   gap: 1rem;
-  background-color: #262626;
-  color: aliceblue;
+  /* background-color: #262626;
+  color: aliceblue; */
   padding: 1rem;
   align-items: center;
+}
+.dark-mode {
+  background-color: #262626;
+  color: aliceblue;
+}
+.light-mode {
+  background-color: #f0f0f0;
+  color: #262626;
 }
 .header-container > h1 {
   font-size: 1.3rem;

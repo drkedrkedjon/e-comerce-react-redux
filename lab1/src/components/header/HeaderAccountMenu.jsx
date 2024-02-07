@@ -1,10 +1,10 @@
 import { ShoppingCart, Heart, User, Moon, Sun } from "react-feather";
 import "./HeaderAccountMenu.css";
 import { useContext } from "react";
-import { userContext } from "../../contextos/userContext";
+import { UserContext } from "../../contextos/UserContext";
 
 export default function HeaderAccountMenu() {
-  const { user, setUser } = useContext(userContext);
+  const { user, setUser } = useContext(UserContext);
 
   function handleTheme() {
     setUser({ ...user, isDarkMode: !user.isDarkMode });
