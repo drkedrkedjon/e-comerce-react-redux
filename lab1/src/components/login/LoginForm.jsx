@@ -1,4 +1,4 @@
-import { useContext, useState, useReducer } from "react";
+import { useContext, useState } from "react";
 import "./LoginForm.css";
 import { UserContext } from "../../contextos/UserContext";
 
@@ -28,15 +28,6 @@ export default function LoginForm() {
       isLogged: false,
     });
   }
-
-  // function handleUser(state, action) {
-  //   switch (action.type) {
-  //     default:
-  //       return state;
-  //   }
-  // }
-
-  // const [state, dispach] = useReducer(handleUser, user);
 
   return (
     <form className="login-form">

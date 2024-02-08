@@ -2,21 +2,21 @@
 import "./Card.css";
 
 export default function Card({ product }) {
-  const { image, title, price } = product;
+  const { image, title, price, quantity } = product;
   return (
     <div className="shopping-card-container">
-      <div className="notificacion-bubble-container">
+      <div className="notificacion-bubble-container-cart">
         <img
           className="shopping-card-image"
           src={image}
           alt={title}
         />
-        <span className="notification-bubble">5</span>
+        <span className="notification-bubble-cart">{quantity}</span>
       </div>
       <div className="shopping-card-body">
         <p>{title}</p>
-        <p>Unit Price: {price}</p>
-        <p>Total Price: $345.00</p>
+        <p>Unit Price: {price}€</p>
+        <p>Total Price: {price * quantity}€</p>
       </div>
     </div>
   );
