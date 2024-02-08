@@ -12,6 +12,11 @@ function formReducer(state, action) {
         ...state,
         email: action.payload,
       };
+    case "RESET":
+      return {
+        name: "",
+        email: "",
+      };
     default:
       return state;
   }
@@ -25,10 +30,12 @@ export default function useForm() {
 
   const setName = (name) => dispatch({ type: "SET_NAME", payload: name });
   const setEmail = (email) => dispatch({ type: "SET_EMAIL", payload: email });
+  const reset = () => dispatch({ type: "RESET" });
 
   return {
     form,
     setName,
     setEmail,
+    reset,
   };
 }

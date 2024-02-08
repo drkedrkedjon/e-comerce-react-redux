@@ -7,7 +7,6 @@ export default function ProductCard({ product }) {
   const { user, setUser } = useContext(UserContext);
 
   const handleAddToCart = () => {
-    console.log(user);
     setUser({
       ...user,
       shoppingCartItems: [...user.shoppingCartItems, product.id],
