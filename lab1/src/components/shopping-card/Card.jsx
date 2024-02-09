@@ -15,8 +15,8 @@ export default function Card({ product }) {
       </div>
       <div className="shopping-card-body">
         <p>{title}</p>
-        <p>Unit Price: {price}€</p>
-        <p>Total Price: {price * quantity}€</p>
+        <p>Unit Price: {price.toFixed(2)}€</p>
+        <p>Total Price: {price.toFixed(2) * quantity}€</p>
       </div>
     </div>
   );
