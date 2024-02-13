@@ -4,7 +4,7 @@ import "./HeaderAccountMenu.css";
 import { useContext } from "react";
 import { UserContext } from "../../contextos/UserContext";
 
-export default function HeaderAccountMenu({ setRutas }) {
+export default function HeaderAccountMenu() {
   const { user, setUser } = useContext(UserContext);
 
   function handleTheme() {
@@ -22,10 +22,7 @@ export default function HeaderAccountMenu({ setRutas }) {
       <li onClick={handleTheme}>
         {user.isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
       </li>
-      <li
-        className="notificacion-bubble-container"
-        onClick={() => setRutas("shopping-cart")}
-      >
+      <li className="notificacion-bubble-container">
         <ShoppingCart size={20} />
 
         {user.shoppingCartItems.length !== 0 && (

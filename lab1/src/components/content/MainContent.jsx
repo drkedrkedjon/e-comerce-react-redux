@@ -2,14 +2,18 @@
 import "./MainContent.css";
 import ProductCard from "./ProductCard";
 import data from "../../assets/data.json";
+import { UserContext } from "../../contextos/UserContext";
+import { useContext } from "react";
 
-export default function MainContent({ searchInputValue }) {
+export default function MainContent() {
+  const { user } = useContext(UserContext);
+
   function filteredProducts() {
-    if (searchInputValue === "") {
+    if (user.searchValue === "") {
       return data;
     } else {
       return data.filter((product) =>
-        product.title.toLowerCase().includes(searchInputValue.toLowerCase())
+        product.title.toLowerCase().includes(user.searchValue.toLowerCase())
       );
     }
   }
@@ -21,5 +25,5 @@ export default function MainContent({ searchInputValue }) {
     />
   ));
 
-  return <main className="main-continer">{mapeo}</main>;
+  return <main className="main-container">{mapeo}</main>;
 }
