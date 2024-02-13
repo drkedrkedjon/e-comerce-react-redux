@@ -1,19 +1,17 @@
 import "./Promotion.css";
 import { UserContext } from "../../contextos/UserContext";
-import { RutasContext } from "../../contextos/RutasContext";
 import { useContext } from "react";
 
 export default function Promotion() {
   const { user } = useContext(UserContext);
-  // rutas seran: content y shopping-cart
-  const { rutas } = useContext(RutasContext);
+  const rutas = window.location.pathname.split("/")[1];
 
   const banner = () => {
-    if (user.isLogged && rutas === "content") {
+    if (user.isLogged && rutas === "/") {
       return <p>{user.name}, use your 20% of discount</p>;
-    } else if (!user.isLogged && rutas === "shopping-cart") {
+    } else if (!user.isLogged && rutas === "cart") {
       return <p>Create an account and get extra discounts!</p>;
-    } else if (user.isLogged && rutas === "shopping-cart") {
+    } else if (user.isLogged && rutas === "cart") {
       return (
         <p>{user.name}, your 20% of discount will be aplied at checkout!</p>
       );

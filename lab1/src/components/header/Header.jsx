@@ -5,6 +5,7 @@ import HeaderAccountMenu from "./HeaderAccountMenu";
 import { Search } from "react-feather";
 import "./Header.css";
 import { UserContext } from "../../contextos/UserContext";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [formValue, setFormValue] = useState("");
@@ -22,7 +23,9 @@ export default function Header() {
     <header
       className={`header-container ${user.isDarkMode ? "dark-mode" : "light-mode"}`}
     >
-      <h1>MiTienda</h1>
+      <Link to="/">
+        <h1 className="header-title">MiTienda</h1>
+      </Link>
       <HeaderMenu />
       <form onSubmit={handleSubmit}>
         <input

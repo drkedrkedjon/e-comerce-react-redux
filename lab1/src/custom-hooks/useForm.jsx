@@ -5,12 +5,12 @@ function formReducer(state, action) {
     case "SET_NAME":
       return {
         ...state,
-        name: action.payload,
+        name: action.payload.trim(),
       };
     case "SET_EMAIL":
       return {
         ...state,
-        email: action.payload,
+        email: action.payload.trim(),
       };
     case "RESET":
       return {
