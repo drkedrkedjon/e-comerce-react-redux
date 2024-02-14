@@ -4,6 +4,7 @@ import Error from "../components/error/Error";
 import MainContent from "../components/content/MainContent";
 import ShoppingCart from "../components/shopping-card/ShoppingCart";
 import LoginForm from "../components/login/LoginForm";
+import ProtectedRoutes from "../components/protected-routes/ProtectedRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <ShoppingCart />,
+        element: (
+          <ProtectedRoutes>
+            <ShoppingCart />
+          </ProtectedRoutes>
+        ),
       },
       {
         path: "/login",

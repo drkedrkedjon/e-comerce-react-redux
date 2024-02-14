@@ -14,3 +14,28 @@
   font-size: 1.5rem;
   font-weight: 900;
 }
+.cart-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.cart-btn-container button {
+  padding: 0.7rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.cart-btn-container button:hover {
+  transform: scale(1.05);
+}
+.btn-checkout {
+  background-color: #23b901;
+}
+.btn-reset {
+  background-color: #ff0000;
+}

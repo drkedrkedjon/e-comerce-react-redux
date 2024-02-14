@@ -2,10 +2,13 @@ import { useContext } from "react";
 import "./LoginForm.css";
 import { UserContext } from "../../contextos/UserContext";
 import useForm from "../../custom-hooks/useForm";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function LoginForm() {
   const { user, setUser } = useContext(UserContext);
   const { form, setName, setEmail, reset } = useForm();
+  const navegate = useNavigate();
+  const location = useLocation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,6 +18,7 @@ export default function LoginForm() {
         ...user,
         isLogged: false,
       });
+      navegate("/");
     } else if (!user.isLogged) {
       if (!form.name || !form.email) {
         alert("Please, fill all fields");
@@ -26,6 +30,7 @@ export default function LoginForm() {
         isLogged: true,
       });
       reset();
+      navegate(location.state.pathname);
     }
   }
 

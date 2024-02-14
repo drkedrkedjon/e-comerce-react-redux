@@ -7,8 +7,6 @@ export default function Promotion() {
   const { user } = useContext(UserContext);
   const locationPath = useLocation();
   const rutas = locationPath.pathname.split("/")[1];
-  console.log(locationPath.pathname);
-  console.log(user.isLogged);
 
   const banner = () => {
     if (user.isLogged && rutas === "") {

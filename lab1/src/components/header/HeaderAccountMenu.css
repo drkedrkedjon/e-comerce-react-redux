@@ -11,8 +11,8 @@
 }
 .notification-bubble {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -3px;
+  right: -3px;
   background-color: rgb(64, 129, 254);
   color: white;
   border-radius: 50%;
