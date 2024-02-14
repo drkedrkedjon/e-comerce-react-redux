@@ -30,7 +30,7 @@ export default function LoginForm() {
         isLogged: true,
       });
       reset();
-      navegate(location.state.pathname);
+      navegate(location.state?.pathname);
     }
   }
 
