@@ -21,6 +21,12 @@
   justify-content: center;
   gap: 6vw;
 }
+@media (max-width: 30rem) {
+  .footer-details {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
 .footer-details li:first-child {
   font-weight: 900;
   margin-bottom: 0.2rem;

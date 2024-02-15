@@ -6,6 +6,7 @@
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 0 5px 0 rgb(0 0 0 / 20%);
+  cursor: pointer;
 }
 .card-img-top {
   aspect-ratio: 3/2;

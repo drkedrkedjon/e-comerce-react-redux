@@ -16,7 +16,21 @@ export default function HeaderAccountMenu() {
     <ul className="account-ul">
       <li>
         <Link to="/login">
-          <User size={20} />
+          {
+            <User
+              style={{ strokeWidth: 2 }}
+              size={20}
+              color={
+                user.isLogged
+                  ? user.isDarkMode
+                    ? "greenyellow"
+                    : "green"
+                  : user.isDarkMode
+                    ? "white"
+                    : "black"
+              }
+            />
+          }
         </Link>
       </li>
       <li>
