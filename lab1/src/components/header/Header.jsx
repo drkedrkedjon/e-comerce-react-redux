@@ -5,18 +5,16 @@ import HeaderAccountMenu from "./HeaderAccountMenu";
 import { Search } from "react-feather";
 import "./Header.css";
 import { UserContext } from "../../contextos/UserContext";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Header() {
   const [formValue, setFormValue] = useState("");
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
+  const [, setSearchParams] = useSearchParams();
 
   function handleSubmit(e) {
     e.preventDefault();
-    setUser({
-      ...user,
-      searchValue: formValue,
-    });
+    setSearchParams({ search: formValue });
   }
 
   return (

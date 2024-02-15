@@ -2,18 +2,18 @@
 import "./MainContent.css";
 import ProductCard from "./ProductCard";
 import data from "../../assets/data.json";
-import { UserContext } from "../../contextos/UserContext";
-import { useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export default function MainContent() {
-  const { user } = useContext(UserContext);
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
 
   function filteredProducts() {
-    if (user.searchValue === "") {
+    if (!search) {
       return data;
     } else {
       return data.filter((product) =>
-        product.title.toLowerCase().includes(user.searchValue.toLowerCase())
+        product.title.toLowerCase().includes(search.toLowerCase())
       );
     }
   }
