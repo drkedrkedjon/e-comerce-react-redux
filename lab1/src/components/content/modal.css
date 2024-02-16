@@ -1,0 +1,23 @@
+.edit-modal {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-modal-content {
+  position: relative;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  /* width: 50%;
+  height: 50%; */
+}
+.edit-modal-close-btn {
+  position: absolute;
+  transform: translate(-40%, 40%);
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}

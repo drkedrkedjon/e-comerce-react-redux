@@ -5,7 +5,12 @@ import { UserContext } from "../../contextos/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Edit2, Trash2 } from "react-feather";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({
+  product,
+  deleteProduct,
+  addProduct,
+  editProduct,
+}) {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -20,6 +25,19 @@ export default function ProductCard({ product }) {
   const handleCardClick = () => {
     navigate(`/product/${product.id}`);
   };
+
+  function handleNewItem(e) {
+    e.stopPropagation();
+    addProduct();
+  }
+  function handleEditItem(e) {
+    e.stopPropagation();
+    editProduct(product.id);
+  }
+  function handleDeleteItem(e) {
+    e.stopPropagation();
+    deleteProduct(product.id);
+  }
 
   return (
     <div
@@ -45,14 +63,19 @@ export default function ProductCard({ product }) {
         </button>
       )}
       <div className="edit-delete-btn">
-        <button>
+        <button onClick={handleEditItem}>
           <Edit2 />
         </button>
-        <button>
+        <button onClick={handleDeleteItem}>
           <Trash2 color={"red"} />
         </button>
       </div>
-      <button className="new-item-btn">Add New Item</button>
+      <button
+        onClick={handleNewItem}
+        className="new-item-btn"
+      >
+        Add New Item
+      </button>
     </div>
   );
 }
