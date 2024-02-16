@@ -3,6 +3,7 @@ import "./ProductCard.css";
 import { useContext } from "react";
 import { UserContext } from "../../contextos/UserContext";
 import { useNavigate } from "react-router-dom";
+import { Edit2, Trash2 } from "react-feather";
 
 export default function ProductCard({ product }) {
   const { user, setUser } = useContext(UserContext);
@@ -43,6 +44,15 @@ export default function ProductCard({ product }) {
           Add to Cart
         </button>
       )}
+      <div className="edit-delete-btn">
+        <button>
+          <Edit2 />
+        </button>
+        <button>
+          <Trash2 color={"red"} />
+        </button>
+      </div>
+      <button className="new-item-btn">Add New Item</button>
     </div>
   );
 }
