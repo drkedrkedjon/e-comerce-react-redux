@@ -10,6 +10,7 @@ export default function ProductCard({
   deleteProduct,
   addProduct,
   editProduct,
+  setModalType,
 }) {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -29,10 +30,12 @@ export default function ProductCard({
   function handleNewItem(e) {
     e.stopPropagation();
     addProduct();
+    setModalType("new");
   }
   function handleEditItem(e) {
     e.stopPropagation();
     editProduct(product.id);
+    setModalType("edit");
   }
   function handleDeleteItem(e) {
     e.stopPropagation();

@@ -11,8 +11,7 @@
   background-color: white;
   padding: 2rem;
   border-radius: 1rem;
-  /* width: 50%;
-  height: 50%; */
+  width: min(90vw, 40rem);
 }
 .edit-modal-close-btn {
   position: absolute;
@@ -20,4 +19,47 @@
   top: 0;
   right: 0;
   cursor: pointer;
+}
+.modal-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.edit-modal-content h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}
+.modal-form-container label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: -0.8rem;
+}
+.modal-form-container input {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+.modal-form-container textarea {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  height: 10rem;
+}
+.modal-form-container button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: green;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: scale 0.3s;
+}
+.modal-form-container button:hover {
+  scale: 1.02;
 }
