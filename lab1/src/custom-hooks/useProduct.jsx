@@ -7,17 +7,24 @@ export default function useProduct() {
   const [modalType, setModalType] = useState("");
 
   const [form, setForm] = useState({
-    title: "Sasa",
+    title: "",
     price: "",
     description: "",
   });
 
   const deleteProduct = (id) => {
-    console.log("deleteProduct", id);
+    const filteredProducts = products.filter((product) => product.id !== id);
+    setProducts(filteredProducts);
   };
   const addProduct = () => {
-    console.log("addProduct");
+    setIsModalOpen(true);
+    setForm({
+      title: "",
+      price: "",
+      description: "",
+    });
   };
+
   const editProduct = (id) => {
     const filteredProduct = products.filter((product) => product.id === id);
     setForm({

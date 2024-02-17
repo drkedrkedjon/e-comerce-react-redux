@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import "./modal.css";
 import { XCircle } from "react-feather";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Modal({
   form,
@@ -16,7 +17,7 @@ export default function Modal({
         return [
           ...prevProducts,
           {
-            id: prevProducts.length + 1,
+            id: uuidv4(),
             title: form.title,
             price: form.price,
             description: form.description,
