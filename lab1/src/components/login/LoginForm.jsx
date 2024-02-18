@@ -24,8 +24,8 @@ export default function LoginForm() {
         alert("Please, fill all fields");
         return;
       }
-      const formEmail = form.email.toLowerCase();
-      const role = formEmail.includes("@admin") ? "admin" : "user";
+
+      const role = form.email.includes("@admin") ? "admin" : "user";
       setUser({
         ...user,
         ...form,
