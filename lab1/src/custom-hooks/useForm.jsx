@@ -10,7 +10,7 @@ function formReducer(state, action) {
     case "SET_EMAIL":
       return {
         ...state,
-        email: action.payload.toLowerCase().trim(),
+        email: action.payload.toLowerCase(),
       };
     case "RESET":
       return {
