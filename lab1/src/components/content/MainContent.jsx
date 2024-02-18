@@ -4,6 +4,8 @@ import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Modal from "./Modal";
 import useProduct from "../../custom-hooks/useProduct";
+import { UserContext } from "../../contextos/UserContext";
+import { useContext } from "react";
 
 export default function MainContent() {
   const {
@@ -20,6 +22,7 @@ export default function MainContent() {
     editProduct,
   } = useProduct();
 
+  const { user } = useContext(UserContext);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
 
@@ -54,12 +57,14 @@ export default function MainContent() {
   return (
     <>
       <main className="main-container">{mapeo}</main>
-      <button
-        onClick={handleNewItem}
-        className="new-item-btn"
-      >
-        Add New Item
-      </button>
+      {user.isLogged && user.role === "admin" && (
+        <button
+          onClick={handleNewItem}
+          className="new-item-btn"
+        >
+          Add New Item
+        </button>
+      )}
       {isModalOpen && (
         <Modal
           form={form}

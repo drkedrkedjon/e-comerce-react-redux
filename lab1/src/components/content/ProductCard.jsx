@@ -59,14 +59,16 @@ export default function ProductCard({
           Add to Cart
         </button>
       )}
-      <div className="edit-delete-btn">
-        <button onClick={handleEditItem}>
-          <Edit2 />
-        </button>
-        <button onClick={handleDeleteItem}>
-          <Trash2 color={"red"} />
-        </button>
-      </div>
+      {user.isLogged && user.role === "admin" && (
+        <div className="edit-delete-btn">
+          <button onClick={handleEditItem}>
+            <Edit2 />
+          </button>
+          <button onClick={handleDeleteItem}>
+            <Trash2 color={"red"} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

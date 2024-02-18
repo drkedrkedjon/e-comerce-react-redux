@@ -12,7 +12,7 @@ export default function UserProvider({ children }) {
         isLogged: false,
         isDarkMode: true,
         shoppingCartItems: [],
-        searchValue: "",
+        role: "",
       }
   );
 
