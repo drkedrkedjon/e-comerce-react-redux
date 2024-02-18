@@ -6,6 +6,8 @@ export default function useProduct() {
   const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     title: "",
     price: "",
@@ -13,35 +15,32 @@ export default function useProduct() {
   });
 
   // API
+  // Obtener data desde API inicialmente
   const API_URL = "http://localhost:3000/products";
   useEffect(() => {
+    setIsLoading(true);
+    const getProducts = async () => {
+      try {
+        const response = await axios.get(API_URL);
+        setProducts(response.data);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          setError("Error loading products");
+        } else {
+          console.error("Error fetching objects", error);
+        }
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 1000);
+      }
+    };
+
     getProducts();
   }, []);
 
-  // Obtener data desde API inicialmente
-  const getProducts = async () => {
-    try {
-      const response = await axios.get(API_URL);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("Error fetching objects", error);
-    }
-  };
-
-  // borrar producto en API y local state
-  const deleteProduct = async (id) => {
-    try {
-      await axios.delete(`${API_URL}/${id}`);
-      setProducts((previousProducts) =>
-        previousProducts.filter((product) => product.id !== id)
-      );
-    } catch (error) {
-      console.error("Error deleting object", error);
-    }
-  };
-
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
-  const handleSetForm = async (e) => {
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
     if (modalType === "new") {
       const newProduct = {
@@ -98,6 +97,18 @@ export default function useProduct() {
     });
   };
 
+  // borrar producto en API y local state
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/${id}`);
+      setProducts((previousProducts) =>
+        previousProducts.filter((product) => product.id !== id)
+      );
+    } catch (error) {
+      console.error("Error deleting object", error);
+    }
+  };
+
   // Para el boton de editar producto en el componente CARD
   const editProduct = (id) => {
     const filteredProduct = products.filter((product) => product.id === id);
@@ -119,9 +130,13 @@ export default function useProduct() {
     setIsModalOpen,
     modalType,
     setModalType,
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
     deleteProduct,
     addProduct,
     editProduct,
-    handleSetForm,
+    handleSubmitForm,
   };
 }

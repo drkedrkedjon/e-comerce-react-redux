@@ -7,7 +7,7 @@ export default function Modal({
   setForm,
   setIsModalOpen,
   modalType,
-  handleSetForm,
+  handleSubmitForm,
 }) {
   return (
     <div className="edit-modal">
@@ -25,7 +25,7 @@ export default function Modal({
         )}
         <form
           className="modal-form-container"
-          onSubmit={handleSetForm}
+          onSubmit={handleSubmitForm}
         >
           <label htmlFor="title">Title</label>
           <input

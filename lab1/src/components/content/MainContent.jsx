@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import "./MainContent.css";
 import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Modal from "./Modal";
+import Loader from "../loader/Loader";
 import useProduct from "../../custom-hooks/useProduct";
 import { UserContext } from "../../contextos/UserContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export default function MainContent() {
   const {
@@ -14,13 +16,16 @@ export default function MainContent() {
     form,
     setForm,
     isModalOpen,
+    setIsModalOpen,
     modalType,
     setModalType,
-    setIsModalOpen,
+    error,
+    setError,
+    isLoading,
     deleteProduct,
     addProduct,
     editProduct,
-    handleSetForm,
+    handleSubmitForm,
   } = useProduct();
 
   const { user } = useContext(UserContext);
@@ -55,6 +60,15 @@ export default function MainContent() {
     />
   ));
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      setError(null);
+    }
+  }, [error]);
+
+  if (isLoading) return <Loader />;
+
   return (
     <>
       <main className="main-container">{mapeo}</main>
@@ -73,7 +87,7 @@ export default function MainContent() {
           setIsModalOpen={setIsModalOpen}
           modalType={modalType}
           setProducts={setProducts}
-          handleSetForm={handleSetForm}
+          handleSubmitForm={handleSubmitForm}
         />
       )}
     </>
