@@ -8,7 +8,6 @@ import { Edit2, Trash2 } from "react-feather";
 export default function ProductCard({
   product,
   deleteProduct,
-  addProduct,
   editProduct,
   setModalType,
 }) {
@@ -27,11 +26,6 @@ export default function ProductCard({
     navigate(`/product/${product.id}`);
   };
 
-  function handleNewItem(e) {
-    e.stopPropagation();
-    addProduct();
-    setModalType("new");
-  }
   function handleEditItem(e) {
     e.stopPropagation();
     editProduct(product.id);
@@ -73,12 +67,6 @@ export default function ProductCard({
           <Trash2 color={"red"} />
         </button>
       </div>
-      <button
-        onClick={handleNewItem}
-        className="new-item-btn"
-      >
-        Add New Item
-      </button>
     </div>
   );
 }

@@ -33,6 +33,12 @@ export default function MainContent() {
     }
   }
 
+  function handleNewItem(e) {
+    e.stopPropagation();
+    addProduct();
+    setModalType("new");
+  }
+
   const mapeo = filteredProducts().map((product) => (
     <ProductCard
       setIsModalOpen={setIsModalOpen}
@@ -48,6 +54,12 @@ export default function MainContent() {
   return (
     <>
       <main className="main-container">{mapeo}</main>
+      <button
+        onClick={handleNewItem}
+        className="new-item-btn"
+      >
+        Add New Item
+      </button>
       {isModalOpen && (
         <Modal
           form={form}

@@ -42,11 +42,11 @@ export default function useProduct() {
     form,
     setForm,
     isModalOpen,
+    setIsModalOpen,
     modalType,
     setModalType,
     deleteProduct,
     addProduct,
     editProduct,
-    setIsModalOpen,
   };
 }
