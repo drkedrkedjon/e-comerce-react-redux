@@ -17,7 +17,7 @@ export default function useProduct() {
   // API
   // Obtener data desde API inicialmente http://demo8040877.mockable.io/products
   // const API_URL = "http://localhost:3000/products";
-  const API_URL = "http://demo8040877.mockable.io/products";
+  const API_URL = "https://demo8040877.mockable.io/products";
   useEffect(() => {
     setIsLoading(true);
     const getProducts = async () => {
