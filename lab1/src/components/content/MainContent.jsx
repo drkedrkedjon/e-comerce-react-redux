@@ -20,6 +20,7 @@ export default function MainContent() {
     deleteProduct,
     addProduct,
     editProduct,
+    handleSetForm,
   } = useProduct();
 
   const { user } = useContext(UserContext);
@@ -72,6 +73,7 @@ export default function MainContent() {
           setIsModalOpen={setIsModalOpen}
           modalType={modalType}
           setProducts={setProducts}
+          handleSetForm={handleSetForm}
         />
       )}
     </>

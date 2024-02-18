@@ -1,50 +1,14 @@
 /* eslint-disable react/prop-types */
 import "./modal.css";
 import { XCircle } from "react-feather";
-import { v4 as uuidv4 } from "uuid";
 
 export default function Modal({
   form,
   setForm,
   setIsModalOpen,
   modalType,
-  setProducts,
+  handleSetForm,
 }) {
-  const handleSetForm = (e) => {
-    e.preventDefault();
-    if (modalType === "new") {
-      setProducts((prevProducts) => {
-        return [
-          ...prevProducts,
-          {
-            id: uuidv4(),
-            title: form.title,
-            price: form.price,
-            description: form.description,
-            image: "https://via.placeholder.com/150/92c952",
-          },
-        ];
-      });
-      setIsModalOpen(false);
-    } else if (modalType === "edit") {
-      setProducts((prevProducts) => {
-        return prevProducts.map((product) => {
-          if (product.id === form.id) {
-            return {
-              ...product,
-              title: form.title,
-              price: form.price,
-              description: form.description,
-            };
-          } else {
-            return product;
-          }
-        });
-      });
-      setIsModalOpen(false);
-    }
-  };
-
   return (
     <div className="edit-modal">
       <div className="edit-modal-content">
