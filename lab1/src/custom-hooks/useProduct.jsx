@@ -61,7 +61,7 @@ export default function useProduct() {
       }
     } else if (modalType === "edit") {
       const findProduct = products.find(
-        (product) => product.id.toString() === form.id.toSting()
+        (product) => product.id.toString() === form.id.toString()
       );
       const editedProduct = {
         ...findProduct,

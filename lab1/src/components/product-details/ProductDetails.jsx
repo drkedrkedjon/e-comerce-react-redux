@@ -43,8 +43,6 @@ export default function ProductDetails() {
     getProducts();
   }, []);
 
-  console.log(products);
-
   useEffect(() => {
     if (error) {
       alert(error);
