@@ -60,7 +60,9 @@ export default function useProduct() {
         console.error("Error creating object", error);
       }
     } else if (modalType === "edit") {
-      const findProduct = products.find((product) => product.id === form.id);
+      const findProduct = products.find(
+        (product) => product.id.toString() === form.id.toSting()
+      );
       const editedProduct = {
         ...findProduct,
         title: form.title,

@@ -19,7 +19,9 @@ export default function ShoppingCart() {
   });
 
   const mapeo = Object.keys(productCounter).map((id) => {
-    const product = products.find((product) => product.id === id);
+    const product = products.find(
+      (product) => product.id.toString() === id.toString()
+    );
     return {
       ...product,
       quantity: productCounter[id],
