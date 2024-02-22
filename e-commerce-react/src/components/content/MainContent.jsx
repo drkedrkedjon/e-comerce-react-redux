@@ -9,7 +9,7 @@ import useProduct from "../../custom-hooks/useProduct";
 import { UserContext } from "../../contextos/UserContext";
 import { useContext, useEffect } from "react";
 import { getAllProducts } from "../../redux/reducers/productsReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function MainContent() {
   const {
@@ -31,7 +31,6 @@ export default function MainContent() {
   } = useProduct();
 
   const products = useSelector(getAllProducts);
-  const dispatch = useDispatch();
 
   const { user } = useContext(UserContext);
   const [searchParams] = useSearchParams();
@@ -47,7 +46,7 @@ export default function MainContent() {
     }
   }
 
-  function handleNewItem() {
+  function handleOpenNewProductModal() {
     setForm({
       title: "",
       price: "",
@@ -83,7 +82,7 @@ export default function MainContent() {
       <main className="main-container">{mapeo}</main>
       {user.isLogged && user.role === "admin" && (
         <button
-          onClick={handleNewItem}
+          onClick={handleOpenNewProductModal}
           className="new-item-btn"
         >
           Add New Item

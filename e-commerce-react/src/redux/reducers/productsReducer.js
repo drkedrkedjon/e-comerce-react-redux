@@ -12,6 +12,8 @@ const initialData = {
 function productsReducer(state = initialData, action) {
   switch (action.type) {
     case PRODUCTS_ADD_PRODUCT:
+      console.log(state.products, action.payload);
+      break;
     case PRODUCTS_DELETE_PRODUCT:
     case PRODUCTS_UPDATE_PRODUCT:
     default:

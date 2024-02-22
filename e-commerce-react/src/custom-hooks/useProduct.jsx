@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../redux/actions/index.js";
 
 export default function useProduct() {
   const [products, setProducts] = useState([]);
@@ -14,31 +16,32 @@ export default function useProduct() {
     description: "",
     image: "",
   });
+  const dispatch = useDispatch();
 
   // API
   // Obtener data desde API inicialmente
   const API_URL = "http://localhost:3000/products";
-  useEffect(() => {
-    setIsLoading(true);
-    const getProducts = async () => {
-      try {
-        const response = await axios.get(API_URL);
-        setProducts(response.data);
-      } catch (error) {
-        if (error.response && error.response.status === 404) {
-          setError("Error loading products");
-        } else {
-          console.error("Error fetching objects", error);
-        }
-      } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
-      }
-    };
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   const getProducts = async () => {
+  //     try {
+  //       const response = await axios.get(API_URL);
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       if (error.response && error.response.status === 404) {
+  //         setError("Error loading products");
+  //       } else {
+  //         console.error("Error fetching objects", error);
+  //       }
+  //     } finally {
+  //       setTimeout(() => {
+  //         setIsLoading(false);
+  //       }, 1000);
+  //     }
+  //   };
 
-    getProducts();
-  }, []);
+  //   getProducts();
+  // }, []);
 
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
   const handleSubmitForm = async (e) => {
@@ -53,8 +56,9 @@ export default function useProduct() {
       };
 
       try {
-        await axios.post(API_URL, newProduct);
-        setProducts((prevProducts) => [...prevProducts, newProduct]);
+        // await axios.post(API_URL, newProduct);
+        // setProducts((prevProducts) => [...prevProducts, newProduct]);
+        dispatch(addProduct(newProduct));
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error creating object", error);
@@ -91,14 +95,14 @@ export default function useProduct() {
   // API
 
   // Para el unico boton rojo de agregar producto fixed en MainContent
-  const addProduct = () => {
-    // setIsModalOpen(true);
-    setForm({
-      title: "",
-      price: "",
-      description: "",
-    });
-  };
+  // const addProduct = () => {
+  //   // setIsModalOpen(true);
+  //   setForm({
+  //     title: "",
+  //     price: "",
+  //     description: "",
+  //   });
+  // };
 
   // borrar producto en API y local state
   const deleteProduct = async (id) => {
