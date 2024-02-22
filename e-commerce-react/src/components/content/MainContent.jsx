@@ -8,10 +8,12 @@ import Loader from "../loader/Loader";
 import useProduct from "../../custom-hooks/useProduct";
 import { UserContext } from "../../contextos/UserContext";
 import { useContext, useEffect } from "react";
+import { getAllProducts } from "../../redux/reducers/productsReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function MainContent() {
   const {
-    products,
+    // products,
     setProducts,
     form,
     setForm,
@@ -28,27 +30,34 @@ export default function MainContent() {
     handleSubmitForm,
   } = useProduct();
 
+  const products = useSelector(getAllProducts);
+  const dispatch = useDispatch();
+
   const { user } = useContext(UserContext);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
 
-  function filteredProducts() {
+  function filteredProducts(data) {
     if (!search) {
-      return products;
+      return data.products;
     } else {
-      return products.filter((product) =>
+      return data.products.filter((product) =>
         product.title.toLowerCase().includes(search.toLowerCase())
       );
     }
   }
 
-  function handleNewItem(e) {
-    e.stopPropagation();
-    addProduct();
+  function handleNewItem() {
+    setForm({
+      title: "",
+      price: "",
+      description: "",
+    });
     setModalType("new");
+    setIsModalOpen(true);
   }
 
-  const mapeo = filteredProducts().map((product) => (
+  const mapeo = filteredProducts(products).map((product) => (
     <ProductCard
       setIsModalOpen={setIsModalOpen}
       key={product.id}

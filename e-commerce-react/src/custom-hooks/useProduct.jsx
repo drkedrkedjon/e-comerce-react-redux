@@ -92,7 +92,7 @@ export default function useProduct() {
 
   // Para el unico boton rojo de agregar producto fixed en MainContent
   const addProduct = () => {
-    setIsModalOpen(true);
+    // setIsModalOpen(true);
     setForm({
       title: "",
       price: "",
