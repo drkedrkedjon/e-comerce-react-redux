@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addProduct, removeProduct } from "../redux/actions/index.js";
+import {
+  addProduct,
+  removeProduct,
+  updateProduct,
+} from "../redux/actions/index.js";
+import { getAllProducts } from "../redux/reducers/productsReducer";
+import { useSelector } from "react-redux";
 
 export default function useProduct() {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,10 +23,11 @@ export default function useProduct() {
     image: "",
   });
   const dispatch = useDispatch();
+  const products = useSelector(getAllProducts);
 
   // API
   // Obtener data desde API inicialmente
-  const API_URL = "http://localhost:3000/products";
+  // const API_URL = "http://localhost:3000/products";
   // useEffect(() => {
   //   setIsLoading(true);
   //   const getProducts = async () => {
@@ -64,7 +71,7 @@ export default function useProduct() {
         console.error("Error creating object", error);
       }
     } else if (modalType === "edit") {
-      const findProduct = products.find(
+      const findProduct = products.products.find(
         (product) => product.id.toString() === form.id.toString()
       );
       const editedProduct = {
@@ -75,16 +82,18 @@ export default function useProduct() {
       };
 
       try {
-        await axios.put(`${API_URL}/${form.id}`, editedProduct);
-        setProducts((prevProducts) => {
-          return prevProducts.map((product) => {
-            if (product.id === form.id) {
-              return editedProduct;
-            } else {
-              return product;
-            }
-          });
-        });
+        // await axios.put(`${API_URL}/${form.id}`, editedProduct);
+
+        // setProducts((prevProducts) => {
+        //   return prevProducts.map((product) => {
+        //     if (product.id === form.id) {
+        //       return editedProduct;
+        //     } else {
+        //       return product;
+        //     }
+        //   });
+        // });
+        dispatch(updateProduct(editedProduct));
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error updating object", error);
@@ -118,8 +127,10 @@ export default function useProduct() {
   };
 
   // Para el boton de editar producto en el componente CARD
-  const editProduct = (id) => {
-    const filteredProduct = products.filter((product) => product.id === id);
+  const openEditProductModal = (id) => {
+    const filteredProduct = products.products.filter(
+      (product) => product.id.toString() === id.toString()
+    );
     setForm({
       title: filteredProduct[0].title,
       price: filteredProduct[0].price,
@@ -131,7 +142,7 @@ export default function useProduct() {
 
   return {
     products,
-    setProducts,
+    // setProducts,
     form,
     setForm,
     isModalOpen,
@@ -144,7 +155,7 @@ export default function useProduct() {
     setError,
     deleteProduct,
     addProduct,
-    editProduct,
+    openEditProductModal,
     handleSubmitForm,
   };
 }
