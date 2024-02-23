@@ -31,7 +31,7 @@ export default function ProductCard({
     editProduct(product.id);
     setModalType("edit");
   }
-  function handleDeleteItem(e) {
+  function handleDeleteProduct(e) {
     e.stopPropagation();
     deleteProduct(product.id);
   }
@@ -64,7 +64,7 @@ export default function ProductCard({
           <button onClick={handleEditItem}>
             <Edit2 />
           </button>
-          <button onClick={handleDeleteItem}>
+          <button onClick={handleDeleteProduct}>
             <Trash2 color={"red"} />
           </button>
         </div>

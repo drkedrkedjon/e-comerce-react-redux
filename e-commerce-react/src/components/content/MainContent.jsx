@@ -55,7 +55,6 @@ export default function MainContent() {
     setModalType("new");
     setIsModalOpen(true);
   }
-  console.log(products);
 
   const mapeo = filteredProducts(products).map((product) => (
     <ProductCard

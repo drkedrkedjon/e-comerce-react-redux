@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/actions/index.js";
+import { addProduct, removeProduct } from "../redux/actions/index.js";
 
 export default function useProduct() {
   const [products, setProducts] = useState([]);
@@ -107,10 +107,11 @@ export default function useProduct() {
   // borrar producto en API y local state
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`${API_URL}/${id}`);
-      setProducts((previousProducts) =>
-        previousProducts.filter((product) => product.id !== id)
-      );
+      // await axios.delete(`${API_URL}/${id}`);
+      dispatch(removeProduct(id));
+      // setProducts((previousProducts) =>
+      //   previousProducts.filter((product) => product.id !== id)
+      // );
     } catch (error) {
       console.error("Error deleting object", error);
     }
