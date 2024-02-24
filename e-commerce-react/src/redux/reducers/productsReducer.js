@@ -49,7 +49,7 @@ function productsReducer(state = initialData, action) {
         ...state,
         products: {
           ...state.products,
-          products: action.payload.data,
+          products: action.payload,
         },
       };
     default:

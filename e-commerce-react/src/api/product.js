@@ -29,7 +29,7 @@ export const getProductAction = () => async (dispatch) => {
     const data = await axios.get(API_URL);
     dispatch({
       type: PRODUCTS_GET_PRODUCT,
-      payload: data,
+      payload: data.data,
     });
   } catch (error) {
     throw new Error(error.message);
