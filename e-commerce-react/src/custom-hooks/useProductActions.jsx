@@ -24,8 +24,29 @@ export default function useProductActions() {
       setIsLoading(false);
     }
   };
-  const removeProductMiddleware = async () => {};
-  const updateProductMiddleware = async () => {};
+  const removeProductMiddleware = async (id) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await dispatch(removeProductAction(id));
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  const updateProductMiddleware = async (product) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      await dispatch(updateProductAction(product));
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getProductMiddleware = async () => {
     setIsLoading(true);
     setError(null);
@@ -34,7 +55,9 @@ export default function useProductActions() {
     } catch (error) {
       setError(error);
     } finally {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
 

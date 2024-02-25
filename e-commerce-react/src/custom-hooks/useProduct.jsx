@@ -9,6 +9,7 @@ import {
 } from "../redux/actions/index.js";
 import { getAllProducts } from "../redux/reducers/productsReducer";
 import { useSelector } from "react-redux";
+import useProductActions from "./useProductActions";
 
 export default function useProduct() {
   // const [products, setProducts] = useState([]);
@@ -22,10 +23,12 @@ export default function useProduct() {
     description: "",
     image: "",
   });
+  const { addProductMiddleware, updateProductMiddleware } = useProductActions();
   const dispatch = useDispatch();
   const products = useSelector(getAllProducts);
 
   // API
+
   // Obtener data desde API inicialmente
   // const API_URL = "http://localhost:3000/products";
   // useEffect(() => {
@@ -51,6 +54,7 @@ export default function useProduct() {
   // }, []);
 
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
+
   const handleSubmitForm = async (e) => {
     e.preventDefault();
     if (modalType === "new") {
@@ -65,7 +69,8 @@ export default function useProduct() {
       try {
         // await axios.post(API_URL, newProduct);
         // setProducts((prevProducts) => [...prevProducts, newProduct]);
-        dispatch(addProduct(newProduct));
+        // dispatch(addProduct(newProduct));
+        addProductMiddleware(newProduct);
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error creating object", error);
@@ -93,7 +98,8 @@ export default function useProduct() {
         //     }
         //   });
         // });
-        dispatch(updateProduct(editedProduct));
+        // dispatch(updateProduct(editedProduct));
+        updateProductMiddleware(editedProduct);
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error updating object", error);

@@ -3,17 +3,17 @@ import Card from "./Card";
 // import data from "../../assets/data.json";
 import { UserContext } from "../../contextos/UserContext";
 import { useContext, useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
-import Loader from "../loader/Loader";
+// import { useState } from "react";
+// import axios from "axios";
+// import Loader from "../loader/Loader";
 import { getAllProducts } from "../../redux/reducers/productsReducer";
 import { useSelector } from "react-redux";
 
 export default function ShoppingCart() {
   const { user, setUser } = useContext(UserContext);
   // const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const products = useSelector(getAllProducts);
 
   const productCounter = {};
@@ -66,14 +66,14 @@ export default function ShoppingCart() {
   //   getProducts();
   // }, []);
 
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      setError(null);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     alert(error);
+  //     setError(null);
+  //   }
+  // }, [error]);
 
-  if (isLoading) return <Loader />;
+  // if (isLoading) return <Loader />;
 
   return (
     <main className="shopping-cart-container">

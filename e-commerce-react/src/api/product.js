@@ -21,15 +21,35 @@ export const addProductAction = (newProduct) => async (dispatch) => {
   }
 };
 
-export const removeProductAction = (id) => {};
-export const updateProductAction = (id) => {};
+export const removeProductAction = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${API_URL}/${id}`);
+    dispatch({
+      type: PRODUCTS_DELETE_PRODUCT,
+      payload: id,
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+export const updateProductAction = (product) => async (dispach) => {
+  try {
+    await axios.put(`${API_URL}/${product.id}`, product);
+    dispach({
+      type: PRODUCTS_UPDATE_PRODUCT,
+      payload: product,
+    });
+  } catch (error) {
+    throw new Error(error.message, "Error updating product");
+  }
+};
 
 export const getProductAction = () => async (dispatch) => {
   try {
-    const data = await axios.get(API_URL);
+    const fetchData = await axios.get(API_URL);
     dispatch({
       type: PRODUCTS_GET_PRODUCT,
-      payload: data.data,
+      payload: fetchData.data,
     });
   } catch (error) {
     throw new Error(error.message);

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { UserContext } from "../../contextos/UserContext";
 import { useContext, useEffect, useState } from "react";
 // import axios from "axios";
-import Loader from "../loader/Loader";
+// import Loader from "../loader/Loader";
 import { getAllProducts } from "../../redux/reducers/productsReducer";
 import { useSelector } from "react-redux";
 
@@ -12,8 +12,8 @@ export default function ProductDetails() {
   const { id } = useParams();
   const { user, setUser } = useContext(UserContext);
   // const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
   const products = useSelector(getAllProducts);
 
   const handleAddToCart = () => {
@@ -46,14 +46,14 @@ export default function ProductDetails() {
   //   getProducts();
   // }, []);
 
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      setError(null);
-    }
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) {
+  //     alert(error);
+  //     setError(null);
+  //   }
+  // }, [error]);
 
-  if (isLoading) return <Loader />;
+  // if (isLoading) return <Loader />;
 
   const findProduct = products.products.find(
     (product) => product.id.toString() === id.toString()
