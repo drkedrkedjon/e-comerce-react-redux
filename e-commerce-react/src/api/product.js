@@ -8,7 +8,7 @@ import {
 
 const API_URL = "http://localhost:3000/products";
 
-// Actimes que ejecuta middleware
+// Actiones que ejecuta middleware
 export const addProductAction = (newProduct) => async (dispatch) => {
   try {
     await axios.post(API_URL, newProduct);

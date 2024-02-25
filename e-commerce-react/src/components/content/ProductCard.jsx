@@ -8,7 +8,6 @@ import useProductActions from "../../custom-hooks/useProductActions.jsx";
 
 export default function ProductCard({
   product,
-  // deleteProduct,
   openEditProductModal,
   setModalType,
 }) {
@@ -35,7 +34,6 @@ export default function ProductCard({
   }
   function handleDeleteProduct(e) {
     e.stopPropagation();
-    // deleteProduct(product.id);
     removeProductMiddleware(product.id);
   }
 
