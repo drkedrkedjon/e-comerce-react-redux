@@ -4,21 +4,30 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import Promotion from "../promotion/Promotion";
 import Loader from "../loader/Loader";
-import useProductActions from "../../custom-hooks/useProductActions.jsx";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  getProductsLoading,
+  getProductsError,
+  getProductsThunk,
+} from "../../redux/reducers/productsReducer.js";
 
 export default function Layout() {
-  const { isLoading, getProductMiddleware } = useProductActions();
+  const dispatch = useDispatch();
+  const loading = useSelector(getProductsLoading);
+  const error = useSelector(getProductsError);
 
   useEffect(() => {
-    getProductMiddleware();
+    dispatch(getProductsThunk());
   }, []);
 
   return (
     <>
       <Header />
       <Promotion />
-      {isLoading ? <Loader /> : <Outlet />}
+      {error && <p>{error}</p>}
+      {loading ? <Loader /> : <Outlet />}
       <Footer />
     </>
   );

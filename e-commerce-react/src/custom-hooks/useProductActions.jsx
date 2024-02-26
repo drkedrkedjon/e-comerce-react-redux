@@ -4,7 +4,7 @@ import {
   addProductAction,
   removeProductAction,
   updateProductAction,
-  getProductAction,
+  // getProductAction,
 } from "../api/product.js";
 
 // Custom hook, sus functiones se asignan a los botones
@@ -47,19 +47,19 @@ export default function useProductActions() {
     }
   };
 
-  const getProductMiddleware = async () => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      await dispatch(getProductAction());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    }
-  };
+  // const getProductMiddleware = async () => {
+  //   setIsLoading(true);
+  //   setError(null);
+  //   try {
+  //     await dispatch(getProductAction());
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //     }, 1000);
+  //   }
+  // };
 
   return {
     isLoading,
@@ -67,6 +67,6 @@ export default function useProductActions() {
     addProductMiddleware,
     removeProductMiddleware,
     updateProductMiddleware,
-    getProductMiddleware,
+    // getProductMiddleware,
   };
 }
