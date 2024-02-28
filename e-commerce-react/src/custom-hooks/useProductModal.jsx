@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { getAllProducts } from "../redux/reducers/productsReducer";
-import { useSelector } from "react-redux";
-import useProductActions from "./useProductActions";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addProductThunk,
+  updateProductThunk,
+} from "../redux/reducers/productsReducer";
 
 export default function useProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,8 +16,8 @@ export default function useProduct() {
     description: "",
     image: "",
   });
-  const { addProductMiddleware, updateProductMiddleware } = useProductActions();
   const products = useSelector(getAllProducts);
+  const dispatch = useDispatch();
 
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
   const handleSubmitForm = async (e) => {
@@ -29,13 +32,13 @@ export default function useProduct() {
       };
 
       try {
-        addProductMiddleware(newProduct);
+        dispatch(addProductThunk(newProduct));
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error creating object", error);
       }
     } else if (modalType === "edit") {
-      const findProduct = products.products.find(
+      const findProduct = products.find(
         (product) => product.id.toString() === form.id.toString()
       );
       const editedProduct = {
@@ -46,7 +49,7 @@ export default function useProduct() {
       };
 
       try {
-        updateProductMiddleware(editedProduct);
+        dispatch(updateProductThunk(editedProduct));
         setIsModalOpen(false);
       } catch (error) {
         console.error("Error updating object", error);
@@ -56,7 +59,7 @@ export default function useProduct() {
 
   // Para el boton de editar producto en el componente CARD
   const openEditProductModal = (id) => {
-    const filteredProduct = products.products.filter(
+    const filteredProduct = products.filter(
       (product) => product.id.toString() === id.toString()
     );
     setForm({

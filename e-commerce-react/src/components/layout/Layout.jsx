@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import Promotion from "../promotion/Promotion";
 import Loader from "../loader/Loader";
+import Error from "../error/Error";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -26,7 +27,7 @@ export default function Layout() {
     <>
       <Header />
       <Promotion />
-      {error && <p>{error}</p>}
+      {error && <Error error={error} />}
       {loading ? <Loader /> : <Outlet />}
       <Footer />
     </>

@@ -2,7 +2,7 @@ import "./MainContent.css";
 import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Modal from "./Modal";
-import useProduct from "../../custom-hooks/useProduct";
+import useProductModal from "../../custom-hooks/useProductModal";
 import { UserContext } from "../../contextos/UserContext";
 import { useContext } from "react";
 import { getAllProducts } from "../../redux/reducers/productsReducer";
@@ -18,7 +18,7 @@ export default function MainContent() {
     setModalType,
     openEditProductModal,
     handleSubmitForm,
-  } = useProduct();
+  } = useProductModal();
 
   const products = useSelector(getAllProducts);
 
@@ -26,14 +26,8 @@ export default function MainContent() {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
 
-  function filteredProducts(data) {
-    if (!search) {
-      return data;
-    } else {
-      return data.filter((product) =>
-        product.title.toLowerCase().includes(search.toLowerCase())
-      );
-    }
+  if (!products) {
+    return;
   }
 
   function handleOpenNewProductModal() {
@@ -44,6 +38,16 @@ export default function MainContent() {
     });
     setModalType("new");
     setIsModalOpen(true);
+  }
+
+  function filteredProducts(data) {
+    if (!search) {
+      return data;
+    } else {
+      return data.filter((product) =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
   }
 
   const mapeo = filteredProducts(products).map((product) => (
