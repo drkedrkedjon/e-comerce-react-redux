@@ -1,80 +1,71 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 import "./MainContent.css";
 import ProductCard from "./ProductCard";
 import { useSearchParams } from "react-router-dom";
 import Modal from "./Modal";
-import Loader from "../loader/Loader";
-import useProduct from "../../custom-hooks/useProduct";
+import useProductModal from "../../custom-hooks/useProductModal";
 import { UserContext } from "../../contextos/UserContext";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
+import { getAllProducts } from "../../redux/reducers/productsReducer";
+import { useSelector } from "react-redux";
 
 export default function MainContent() {
   const {
-    products,
-    setProducts,
     form,
     setForm,
     isModalOpen,
     setIsModalOpen,
     modalType,
     setModalType,
-    error,
-    setError,
-    isLoading,
-    deleteProduct,
-    addProduct,
-    editProduct,
+    openEditProductModal,
     handleSubmitForm,
-  } = useProduct();
+  } = useProductModal();
+
+  const products = useSelector(getAllProducts);
 
   const { user } = useContext(UserContext);
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
 
-  function filteredProducts() {
+  if (!products) {
+    return;
+  }
+
+  function handleOpenNewProductModal() {
+    setForm({
+      title: "",
+      price: "",
+      description: "",
+    });
+    setModalType("new");
+    setIsModalOpen(true);
+  }
+
+  function filteredProducts(data) {
     if (!search) {
-      return products;
+      return data;
     } else {
-      return products.filter((product) =>
+      return data.filter((product) =>
         product.title.toLowerCase().includes(search.toLowerCase())
       );
     }
   }
 
-  function handleNewItem(e) {
-    e.stopPropagation();
-    addProduct();
-    setModalType("new");
-  }
-
-  const mapeo = filteredProducts().map((product) => (
+  const mapeo = filteredProducts(products).map((product) => (
     <ProductCard
       setIsModalOpen={setIsModalOpen}
       key={product.id}
       product={product}
-      deleteProduct={deleteProduct}
-      addProduct={addProduct}
-      editProduct={editProduct}
+      openEditProductModal={openEditProductModal}
       setModalType={setModalType}
     />
   ));
-
-  useEffect(() => {
-    if (error) {
-      alert(error);
-      setError(null);
-    }
-  }, [error]);
-
-  if (isLoading) return <Loader />;
 
   return (
     <>
       <main className="main-container">{mapeo}</main>
       {user.isLogged && user.role === "admin" && (
         <button
-          onClick={handleNewItem}
+          onClick={handleOpenNewProductModal}
           className="new-item-btn"
         >
           Add New Item
@@ -86,7 +77,6 @@ export default function MainContent() {
           setForm={setForm}
           setIsModalOpen={setIsModalOpen}
           modalType={modalType}
-          setProducts={setProducts}
           handleSubmitForm={handleSubmitForm}
         />
       )}

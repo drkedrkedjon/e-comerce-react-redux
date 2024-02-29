@@ -4,15 +4,17 @@ import { useContext } from "react";
 import { UserContext } from "../../contextos/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Edit2, Trash2 } from "react-feather";
+import { removeProductThunk } from "../../redux/reducers/productsReducer.js";
+import { useDispatch } from "react-redux";
 
 export default function ProductCard({
   product,
-  deleteProduct,
-  editProduct,
+  openEditProductModal,
   setModalType,
 }) {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -28,12 +30,12 @@ export default function ProductCard({
 
   function handleEditItem(e) {
     e.stopPropagation();
-    editProduct(product.id);
+    openEditProductModal(product.id);
     setModalType("edit");
   }
-  function handleDeleteItem(e) {
+  function handleDeleteProduct(e) {
     e.stopPropagation();
-    deleteProduct(product.id);
+    dispatch(removeProductThunk(product.id));
   }
 
   return (
@@ -64,7 +66,7 @@ export default function ProductCard({
           <button onClick={handleEditItem}>
             <Edit2 />
           </button>
-          <button onClick={handleDeleteItem}>
+          <button onClick={handleDeleteProduct}>
             <Trash2 color={"red"} />
           </button>
         </div>
