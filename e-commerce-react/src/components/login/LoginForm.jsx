@@ -1,13 +1,11 @@
 import { useContext } from "react";
 import "./LoginForm.css";
 import { UserContext } from "../../contextos/UserContext";
-// import useForm from "../../custom-hooks/useForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default function LoginForm() {
   const { user, setUser } = useContext(UserContext);
-  // const { form, setName, setEmail, reset } = useForm();
   const navegate = useNavigate();
   const location = useLocation();
   const {
@@ -18,35 +16,29 @@ export default function LoginForm() {
     trigger,
   } = useForm();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
+  const onSubmit = handleSubmit((form) => {
+    console.log(form);
+    if (user.isLogged) {
+      setUser({
+        ...user,
+        isLogged: false,
+      });
+      navegate("/");
+    } else if (!user.isLogged) {
+      if (!form.name || !form.email) {
+        alert("Please, fill all fields");
+        return;
+      }
+      const role = form.email.includes("@admin") ? "admin" : "user";
+      setUser({
+        ...user,
+        ...form,
+        isLogged: true,
+        role,
+      });
+      navegate(location.state?.pathname);
+    }
   });
-
-  // function handleSubmitForm(e) {
-  //   e.preventDefault();
-
-  //   // if (user.isLogged) {
-  //   //   setUser({
-  //   //     ...user,
-  //   //     isLogged: false,
-  //   //   });
-  //   //   navegate("/");
-  //   // } else if (!user.isLogged) {
-  //   //   if (!form.name || !form.email) {
-  //   //     alert("Please, fill all fields");
-  //   //     return;
-  //   //   }
-  //   //   const role = form.email.includes("@admin") ? "admin" : "user";
-  //   //   setUser({
-  //   //     ...user,
-  //   //     ...form,
-  //   //     isLogged: true,
-  //   //     role,
-  //   //   });
-  //   //   reset();
-  //   //   navegate(location.state?.pathname);
-  //   // }
-  // }
 
   return (
     <form
