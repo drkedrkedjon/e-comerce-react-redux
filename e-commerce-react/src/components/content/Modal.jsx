@@ -8,6 +8,11 @@ export default function Modal({
   setIsModalOpen,
   modalType,
   handleSubmitForm,
+  register,
+  handleSubmit,
+  watch,
+  errors,
+  trigger,
 }) {
   return (
     <div className="edit-modal">
