@@ -17,7 +17,6 @@ export default function LoginForm() {
   } = useForm();
 
   const onSubmit = handleSubmit((form) => {
-    console.log(form);
     if (user.isLogged) {
       setUser({
         ...user,
@@ -70,7 +69,7 @@ export default function LoginForm() {
             {...register("email", {
               required: "Please enter your email:",
               pattern: {
-                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]{2,6}$/,
                 message: "Invalid email format",
               },
               onBlur: () => trigger("email"),

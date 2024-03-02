@@ -28,7 +28,7 @@ export default function useProduct() {
         title: form.title,
         price: form.price,
         description: form.description,
-        image: "https://via.placeholder.com/150/92c952",
+        image: form.image,
       };
 
       try {
@@ -63,10 +63,7 @@ export default function useProduct() {
       (product) => product.id.toString() === id.toString()
     );
     setForm({
-      title: filteredProduct[0].title,
-      price: filteredProduct[0].price,
-      description: filteredProduct[0].description,
-      id: filteredProduct[0].id,
+      ...filteredProduct[0],
     });
     setIsModalOpen(true);
   };
