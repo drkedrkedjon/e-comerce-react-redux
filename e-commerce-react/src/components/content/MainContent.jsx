@@ -18,11 +18,6 @@ export default function MainContent() {
     setModalType,
     openEditProductModal,
     handleSubmitForm,
-    register,
-    handleSubmit,
-    watch,
-    errors,
-    trigger,
   } = useProductModal();
 
   const products = useSelector(getAllProducts);
@@ -40,6 +35,7 @@ export default function MainContent() {
       title: "",
       price: "",
       description: "",
+      image: "https://via.placeholder.com/150/92c952",
     });
     setModalType("new");
     setIsModalOpen(true);
@@ -80,11 +76,6 @@ export default function MainContent() {
         <Modal
           form={form}
           setForm={setForm}
-          register={register}
-          handleSubmit={handleSubmit}
-          watch={watch}
-          errors={errors}
-          trigger={trigger}
           setIsModalOpen={setIsModalOpen}
           modalType={modalType}
           handleSubmitForm={handleSubmitForm}

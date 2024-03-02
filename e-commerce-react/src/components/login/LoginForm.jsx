@@ -17,7 +17,6 @@ export default function LoginForm() {
   } = useForm();
 
   const onSubmit = handleSubmit((form) => {
-    console.log(form);
     if (user.isLogged) {
       setUser({
         ...user,

@@ -6,7 +6,6 @@ import {
   addProductThunk,
   updateProductThunk,
 } from "../redux/reducers/productsReducer";
-import { useForm } from "react-hook-form";
 
 export default function useProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,13 +18,6 @@ export default function useProduct() {
   });
   const products = useSelector(getAllProducts);
   const dispatch = useDispatch();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    trigger,
-  } = useForm();
 
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
   const handleSubmitForm = async (e) => {
@@ -36,7 +28,7 @@ export default function useProduct() {
         title: form.title,
         price: form.price,
         description: form.description,
-        image: "https://via.placeholder.com/150/92c952",
+        image: form.image,
       };
 
       try {
@@ -71,10 +63,7 @@ export default function useProduct() {
       (product) => product.id.toString() === id.toString()
     );
     setForm({
-      title: filteredProduct[0].title,
-      price: filteredProduct[0].price,
-      description: filteredProduct[0].description,
-      id: filteredProduct[0].id,
+      ...filteredProduct[0],
     });
     setIsModalOpen(true);
   };
@@ -88,10 +77,5 @@ export default function useProduct() {
     setModalType,
     openEditProductModal,
     handleSubmitForm,
-    register,
-    handleSubmit,
-    watch,
-    errors,
-    trigger,
   };
 }
