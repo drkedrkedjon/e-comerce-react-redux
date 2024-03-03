@@ -55,6 +55,8 @@ export default function LoginForm() {
             id="name"
             {...register("name", {
               required: "Please enter your name:",
+              minLength: { value: 1, message: "Minimum 1 characteres" },
+              maxLength: { value: 40, message: "Maximum 40 characteres" },
               onBlur: () => trigger("name"),
             })}
           />

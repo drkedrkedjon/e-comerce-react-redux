@@ -45,6 +45,14 @@ export default function Modal({
             id="title"
             {...register("title", {
               required: "Please enter a title",
+              maxLength: {
+                value: 40,
+                message: "Please enter a title with less than 40 characters",
+              },
+              minLength: {
+                value: 5,
+                message: "Please enter a title with more than 5 characters",
+              },
               onBlur: () => trigger("title"),
             })}
             value={form.title}
@@ -55,10 +63,14 @@ export default function Modal({
             <p className="modal-form-error">{errors.price.message}</p>
           )}
           <input
-            type="text"
+            type="number"
             id="price"
             {...register("price", {
               required: "Please enter a price",
+              min: {
+                value: 0.01,
+                message: "Please enter a price greater than 0",
+              },
               onBlur: () => trigger("price"),
             })}
             value={form.price}
@@ -73,11 +85,45 @@ export default function Modal({
             id="description"
             {...register("description", {
               required: "Please enter a description",
+              maxLength: {
+                value: 200,
+                message:
+                  "Please enter a description with less than 20 characters",
+              },
+              minLength: {
+                value: 10,
+                message:
+                  "Please enter a description with more than 10 characters",
+              },
               onBlur: () => trigger("description"),
             })}
             value={form.description}
             onChange={(e) => setForm({ ...form, description: e.target.value })}
           />
+
+          <label htmlFor="category">Category</label>
+          {errors.category && (
+            <p className="modal-form-error">{errors.category.message}</p>
+          )}
+          <input
+            type="text"
+            id="category"
+            {...register("category", {
+              required: "Please enter a category",
+              maxLength: {
+                value: 20,
+                message: "Please enter a category with less than 20 characters",
+              },
+              minLength: {
+                value: 3,
+                message: "Please enter a category with more than 3 characters",
+              },
+              onBlur: () => trigger("category"),
+            })}
+            value={form.category}
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+          />
+
           <label htmlFor="image">Image</label>
           {errors.image && (
             <p className="modal-form-error">{errors.image.message}</p>

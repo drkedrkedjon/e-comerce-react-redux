@@ -14,6 +14,7 @@ export default function useProduct() {
     title: "",
     price: "",
     description: "",
+    category: "",
     image: "",
   });
   const products = useSelector(getAllProducts);
@@ -28,6 +29,7 @@ export default function useProduct() {
         title: form.title,
         price: form.price,
         description: form.description,
+        category: form.category,
         image: form.image,
       };
 
@@ -46,6 +48,8 @@ export default function useProduct() {
         title: form.title,
         price: form.price,
         description: form.description,
+        category: form.category,
+        image: form.image,
       };
 
       try {
