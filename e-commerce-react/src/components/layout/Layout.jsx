@@ -7,12 +7,21 @@ import Loader from "../loader/Loader";
 import Error from "../error/Error";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import {
   getProductsLoading,
   getProductsError,
   getProductsThunk,
 } from "../../redux/reducers/productsReducer.js";
+
+// import * as oldData from "../../data/db-backup.json";
+// import { db } from "../../api/firebase";
+// import { doc, setDoc } from "firebase/firestore";
+
+// Iterate over the products array
+// oldData.products.forEach(async (product) => {
+//   const sasa = product.id.toString();
+//   await setDoc(doc(db, "products", sasa), product);
+// });
 
 export default function Layout() {
   const dispatch = useDispatch();

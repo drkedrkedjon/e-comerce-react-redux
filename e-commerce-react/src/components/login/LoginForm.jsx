@@ -3,6 +3,8 @@ import "./LoginForm.css";
 import { UserContext } from "../../contextos/UserContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { auth } from "../../api/firebase";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 export default function LoginForm() {
   const { user, setUser } = useContext(UserContext);
@@ -18,6 +20,14 @@ export default function LoginForm() {
 
   const onSubmit = handleSubmit((form) => {
     if (user.isLogged) {
+      signOut(auth)
+        .then(() => {
+          console.log("Sign-out successful");
+        })
+        .catch((error) => {
+          console.log("Sign-out FALLO", error);
+        });
+
       setUser({
         ...user,
         isLogged: false,
@@ -28,7 +38,21 @@ export default function LoginForm() {
         alert("Please, fill all fields");
         return;
       }
-      const role = form.email.includes("@admin") ? "admin" : "user";
+      const role = form.email.includes("@bubulazy") ? "admin" : "user";
+
+      signInWithEmailAndPassword(auth, form.email, form.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+        });
+
       setUser({
         ...user,
         ...form,
