@@ -27,10 +27,6 @@ export default function LoginForm() {
       });
       navegate("/");
     } else if (!user.isLogged) {
-      // if (!form.name || !form.email) {
-      //   alert("Please, fill all fields");
-      //   return;
-      // }
       const role = form.email.includes("@bubulazy") ? "admin" : "user";
 
       signInWithEmailAndPassword(auth, form.email, form.password);

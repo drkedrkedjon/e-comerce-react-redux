@@ -13,14 +13,16 @@ import {
   getProductsThunk,
 } from "../../redux/reducers/productsReducer.js";
 
+// This code is used to import the old data from the db-backup.json file and upload it to the firebase database
+
 // import * as oldData from "../../data/db-backup.json";
 // import { db } from "../../api/firebase";
 // import { doc, setDoc } from "firebase/firestore";
 
 // Iterate over the products array
 // oldData.products.forEach(async (product) => {
-//   const sasa = product.id.toString();
-//   await setDoc(doc(db, "products", sasa), product);
+//   const string = product.id.toString();
+//   await setDoc(doc(db, "products", string), product);
 // });
 
 export default function Layout() {
