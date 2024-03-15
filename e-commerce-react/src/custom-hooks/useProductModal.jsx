@@ -7,6 +7,8 @@ import {
   updateProductThunk,
 } from "../redux/reducers/productsReducer";
 
+//  TODO - pass the filtered edited product data that arrives as form props to the modal to the inner form state of useForm hook, then when submited pass the new edited values to the handle submit function back to the useProductModal hook. Once there, use that data to update the product in the store.
+
 export default function useProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
@@ -21,16 +23,15 @@ export default function useProduct() {
   const dispatch = useDispatch();
 
   // Manejar SUBMIT en el formulari en el MODAL para editar o crear un producto
-  const handleSubmitForm = async (e) => {
-    e.preventDefault();
+  const handleSubmitForm = async (formData) => {
     if (modalType === "new") {
       const newProduct = {
         id: uuidv4(),
-        title: form.title,
-        price: form.price,
-        description: form.description,
-        category: form.category,
-        image: form.image,
+        title: formData.title,
+        price: formData.price,
+        description: formData.description,
+        category: formData.category,
+        image: formData.image,
       };
 
       try {
@@ -41,15 +42,15 @@ export default function useProduct() {
       }
     } else if (modalType === "edit") {
       const findProduct = products.find(
-        (product) => product.id.toString() === form.id.toString()
+        (product) => product.id.toString() === formData.id.toString()
       );
       const editedProduct = {
         ...findProduct,
-        title: form.title,
-        price: form.price,
-        description: form.description,
-        category: form.category,
-        image: form.image,
+        title: formData.title,
+        price: formData.price,
+        description: formData.description,
+        category: formData.category,
+        image: formData.image,
       };
 
       try {

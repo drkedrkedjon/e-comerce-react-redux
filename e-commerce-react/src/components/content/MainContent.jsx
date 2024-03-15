@@ -36,7 +36,7 @@ export default function MainContent() {
       price: "",
       description: "",
       category: "",
-      image: "https://via.placeholder.com/150/92c952",
+      image: "https://placehold.co/300x200/orange/white?text=New\nProduct",
     });
     setModalType("new");
     setIsModalOpen(true);
@@ -76,7 +76,7 @@ export default function MainContent() {
       {isModalOpen && (
         <Modal
           form={form}
-          setForm={setForm}
+          // setForm={setForm}
           setIsModalOpen={setIsModalOpen}
           modalType={modalType}
           handleSubmitForm={handleSubmitForm}
