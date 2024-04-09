@@ -44,7 +44,7 @@ export default function HeaderAccountMenu() {
           <ShoppingCart size={20} />
         </Link>
 
-        {user.shoppingCartItems.length !== 0 && (
+        {user.shoppingCartItems?.length !== 0 && (
           <span className="notification-bubble">
             {user.shoppingCartItems.length}
           </span>
