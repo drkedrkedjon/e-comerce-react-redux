@@ -55,3 +55,4 @@ export const getProductsMiddleware = async () => {
     throw new Error(error.message);
   }
 };
+ 
