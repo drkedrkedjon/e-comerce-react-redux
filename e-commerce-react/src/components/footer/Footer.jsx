@@ -5,6 +5,7 @@ import "./Footer.css";
 export default function Footer() {
   const { user } = useContext(UserContext);
 
+
   return (
     <footer
       className={`footer-container ${user.isDarkMode ? "dark-mode" : "light-mode"}`}
