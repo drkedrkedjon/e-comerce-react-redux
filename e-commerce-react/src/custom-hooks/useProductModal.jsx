@@ -8,7 +8,6 @@ import {
 } from "../redux/reducers/productsReducer";
 
 //  TODO - pass the filtered edited product data that arrives as form props to the modal to the inner form state of useForm hook, then when submited pass the new edited values to the handle submit function back to the useProductModal hook. Once there, use that data to update the product in the store.
-
 export default function useProduct() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("");
