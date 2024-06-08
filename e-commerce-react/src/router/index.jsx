@@ -6,7 +6,7 @@ import ShoppingCart from "../components/shopping-card/ShoppingCart";
 import LoginForm from "../components/login/LoginForm";
 import ProtectedRoutes from "../components/protected-routes/ProtectedRoutes";
 import ProductDetails from "../components/product-details/ProductDetails";
- 
+  
 export const router = createBrowserRouter([
   {
     path: "/",
