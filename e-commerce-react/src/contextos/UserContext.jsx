@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-
 export const UserContext = createContext();
 
 export default function UserProvider({ children }) {
